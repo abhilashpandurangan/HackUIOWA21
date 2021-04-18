@@ -91,6 +91,17 @@ $("#pause-record-btn").on("click", function (e) {
   recognition.stop();
   instructions.text("Voice recognition paused.");
   console.log(noteContent);
+  $.ajax({
+	type : "POST",
+	url : 'localhost:5070/tone',
+	dataType: "json",
+	data: JSON.stringify(noteContent),
+	contentType: 'application/json;charset=UTF-8',
+	success: function (data) {
+		console.log(data);
+		document.getElementById("replace-me").innerText =  data;
+		}
+	});
 });
 
 // Sync the text inside the text area with the noteContent variable.
