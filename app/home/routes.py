@@ -9,6 +9,12 @@ from flask_login import login_required, current_user
 from app import login_manager
 from jinja2 import TemplateNotFound
 
+
+@blueprint.route('/audioRecording')
+def audioRecording():
+
+    return render_template('audioRecording.html', segment='index')
+
 @blueprint.route('/index')
 @login_required
 def index():

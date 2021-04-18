@@ -1,0 +1,56 @@
+{% extends "layouts/base.html" %} {% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+
+<h1>Hello</h1>
+<!-- <input type="file" accept="audio/*" capture /> -->
+<!-- <audio id="player" controls></audio>
+<script>
+  const player = document.getElementById("player");
+
+  const handleSuccess = function (stream) {
+    if (window.URL) {
+      player.srcObject = stream;
+    } else {
+      player.src = stream;
+    }
+  };
+
+  navigator.mediaDevices
+    .getUserMedia({ audio: true, video: false })
+    .then(handleSuccess);
+</script> -->
+<!DOCTYPE html>
+<html>
+  <head> </head>
+
+  <body style="background-color: rgb(101, 185, 17)">
+    <header>
+      <h1>Record and Play Audio in JavaScript</h1>
+    </header>
+    <!--button for 'start recording'-->
+    <p>
+      <button id="btnStart">START RECORDING</button>
+
+      <button id="btnStop">STOP RECORDING</button>
+      <!--button for 'stop recording'-->
+    </p>
+
+    <!--for record-->
+    <div style="visibility: hidden">
+      <audio controls></audio>
+    </div>
+
+    <!--'controls' use for add 
+    play, pause, and volume-->
+
+    <!--for play the audio-->
+    <audio id="adioPlay" controls></audio>
+  </body>
+</html>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %} {% endblock javascripts %}
