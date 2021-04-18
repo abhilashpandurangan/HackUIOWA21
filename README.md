@@ -24,7 +24,7 @@ To run the jupyter notebook on colab:
 
 Click on this link: [Colab](https://colab.research.google.com/drive/1udf5XcrEzg5BYIgkQyFpF6SCB6NoFrpQ?usp=sharing).
 
-## images:
+## Web App:
 
 ![alt text](https://github.com/abhilashpandurangan/HackUIOWA21/blob/main/web%20app%20images/a.jpeg?raw=true)
 ![alt text](https://github.com/abhilashpandurangan/HackUIOWA21/blob/main/web%20app%20images/b.jpeg?raw=true)
