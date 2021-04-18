@@ -1,3 +1,10 @@
+
+
+$("#b1").on("click", function (e) {
+   console.log('hi');
+   document.getElementById("#video-text").innerHTML = " <iframe width='100%' height='426px' src='https://www.youtube.com/embed/NnIOHDW8DMM?rel=0' title='YouTube video player' frameborder='0' allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen> </iframe>";
+});
+
 try {
   var SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -51,6 +58,7 @@ recognition.onresult = function (event) {
     document.getElementById("replace-me").innerText = noteContent;
   }
 };
+
 
 recognition.onstart = function () {
   instructions.text(

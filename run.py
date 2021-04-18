@@ -4,6 +4,7 @@ Copyright (c) 2019 - present AppSeed.us
 """
 import json
 
+import requests
 from flask_migrate import Migrate
 from os import environ
 from sys import exit
@@ -12,6 +13,10 @@ import logging
 
 from config import config_dict
 from app import create_app, db
+
+from flask import Flask, jsonify, request, make_response
+
+
 
 # WARNING: Don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
@@ -36,29 +41,33 @@ if DEBUG:
     app.logger.info('DBMS        = ' + app_config.SQLALCHEMY_DATABASE_URI )
 
 
+@app.route('/tone',  methods = ['POST'])
 def tone_analyzer():
+    text = request.json['text']
     from ibm_watson import ToneAnalyzerV3
     from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 
-    authenticator = IAMAuthenticator('')
+    authenticator = IAMAuthenticator('5aMLDd1YGIgKSU6sB6qFHjW9PBZeY-7ofGwY7G30UR9A')
     tone_analyzer = ToneAnalyzerV3(
         version='2017-09-21',
         authenticator=authenticator
     )
 
     tone_analyzer.set_service_url('https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/1ff8997b-7f27-4424-99a2-514475e44d41/v3/tone?version=2017-09-21')
-    text = 'Team, I know that times are tough! Product ' \
-           'sales have been disappointing for the past three ' \
-           'quarters. We have a competitive product, but we ' \
-           'need to do a better job of selling it!'\
-           'I am sure we can do it! We did it before and we can do it now! '
+
+    if text is None:
+        text = 'Team, I know that times are tough! Product ' \
+               'sales have been disappointing for the past three ' \
+               'quarters. We have a competitive product, but we ' \
+               'need to do a better job of selling it!'\
+               'I am sure we can do it! We did it before and we can do it now! '
 
     tone_analysis = tone_analyzer.tone(
         {'text': text},
         content_type='application/json',
         sentences= True
     ).get_result()
-    print(json.dumps(tone_analysis, indent=2))
+    return json.dumps(tone_analysis, indent=2)
 
 
 
